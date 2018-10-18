@@ -11,7 +11,23 @@ module.exports = {
     devServer: {
         contentBase: "./public",    //本地服务器所加载的页面所在的目录
         port: "5999",   //设置默认监听端口，如果省略，默认为”8080“
-        inline: true,  //s实时刷新
+        inline: true,  //实时刷新
         historyApiFallback: true    //在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
+    },
+    module: {
+        rules: [
+            {
+                test: /(\.jsx|\.js)$/,  //一个用以匹配loaders所处理文件的拓展名的正则表达式（必须）
+                use: {
+                    loader: "babel-loader",     //loader的名称（必须)
+                    options: {
+                        presets: [
+                            "env", "react"
+                        ]
+                    }
+                },
+                exclude: /node_modules/     //include/exclude:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）；
+            }
+        ]
     }
 };

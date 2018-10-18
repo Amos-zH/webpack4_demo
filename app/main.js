@@ -1,3 +1,8 @@
-import greet from './greet.js';
+import React from 'react';
+import {render} from 'react-dom';
+import hello from './demo.js';
 
-document.querySelector('#app').appendChild(greet());
+render(
+    <hello />,
+    document.getElementById('app')
+);
