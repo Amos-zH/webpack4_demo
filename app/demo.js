@@ -1,15 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import dt from './demo.json';
 
-class hello extends React.Component {
+class Hello extends Component {     //组件名首写字母必须大写
     render() {
         return (
             <div>
                 {dt.word}
-                dqdqd
             </div>
         );
     }
 }
 
-export default hello
+export default Hello

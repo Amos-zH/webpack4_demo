@@ -21,9 +21,7 @@ module.exports = {
                 use: {
                     loader: "babel-loader",     //loader的名称（必须)
                     options: {
-                        presets: [
-                            "@babel/preset-react", "@babel/preset-env"
-                        ]
+                        presets: ["@babel/preset-react", "@babel/preset-env"]
                     }
                 },
                 exclude: /node_modules/     //include/exclude:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）；
