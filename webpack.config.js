@@ -22,7 +22,7 @@ module.exports = {
                     loader: "babel-loader",     //loader的名称（必须)
                     options: {
                         presets: [
-                            "env", "react"
+                            "@babel/preset-react", "@babel/preset-env"
                         ]
                     }
                 },
