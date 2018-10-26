@@ -20,9 +20,9 @@ module.exports = {
                 test: /(\.jsx|\.js)$/,  //一个用以匹配loaders所处理文件的拓展名的正则表达式（必须）
                 use: {
                     loader: "babel-loader",     //loader的名称（必须)
-                    options: {
-                        presets: ["@babel/preset-react", "@babel/preset-env"]
-                    }
+                    // options: {
+                    //     presets: ["@babel/preset-react", "@babel/preset-env"]
+                    // }
                 },
                 exclude: /node_modules/     //include/exclude:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）；
             }

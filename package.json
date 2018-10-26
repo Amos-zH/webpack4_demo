@@ -11,7 +11,7 @@
     "server": "webpack-dev-server --open"
   },
   "keywords": [],
-  "author": "",
+  "author": "amos_hai",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.1.2",
