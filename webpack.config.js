@@ -25,6 +25,24 @@ module.exports = {
                     // }
                 },
                 exclude: /node_modules/     //include/exclude:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）；
+            },
+            {
+                test: /(\.css|\.less)$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },{
+                        loader: "css-loader",
+                        options: {
+                            modules: true,  // 指定启用css modules
+                            localIdentName: "[name]__[local]--[hash:base64:5]" // 指定css的类名格式
+                        }
+                    },{
+                        loader: "less-loader"   //加载less
+                    },{
+                        loader: "postcss-loader"    //自动添加浏览器前缀
+                    }
+                ]
             }
         ]
     }
