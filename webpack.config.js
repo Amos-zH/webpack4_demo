@@ -1,4 +1,6 @@
 const path = require('path');   //一个 Node.js 核心模块，用于操作文件路径。
+const webpack = require('webpack');     //添加版权申明
+const HtmlWebpackPlugin = require('html-webpack-plugin');   //
 
 module.exports = {
     devtool: 'eval-source-map',     //生成Source Maps（使调试更容易）;eval-source-map是一个很好的选项，只应该开发阶段使用它;cheap-module-eval-source-map方法构建速度更快，但是不利于调试，推荐在大型项目考虑时间成本时使用;
@@ -45,5 +47,12 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.BannerPlugin('版权所有，翻版必究'),
+        new HtmlWebpackPlugin({
+            filename: 'index.html', // 配置输出文件名和路径
+            template: __dirname + '/app/assets/index.html', // 配置文件模板
+        })
+    ]
 };
