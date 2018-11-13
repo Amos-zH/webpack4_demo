@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     devtool: 'eval-source-map',     //生成Source Maps（使调试更容易）;eval-source-map是一个很好的选项，只应该开发阶段使用它;cheap-module-eval-source-map方法构建速度更快，但是不利于调试，推荐在大型项目考虑时间成本时使用;
-    entry: __dirname + "/src/demo.js",   //“__dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录。
+    entry: __dirname + "/src/index.js",   //“__dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录。
     output: {
         path: __dirname + "/dist",     //打包后的文件存放的地方
         filename: "index_bundle.js"       //打包后输出文件的文件名
@@ -45,11 +45,20 @@ module.exports = {
                         loader: "postcss-loader"    //自动添加浏览器前缀
                     }
                 ]
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,   //1w字节以下大小的图片会自动转成base64
+                    name: 'img/[name].[hash:7].[ext]',
+                    publicPath:"/dist/"
+                }
             }
         ]
     },
     plugins: [
-        new webpack.BannerPlugin('版权所有，翻版必究'),
+        new webpack.BannerPlugin('AMOS版权所有，翻版必究'),
         new HtmlWebpackPlugin({
             filename: 'index.html', // 配置输出文件名和路径
             template: __dirname + '/public/temp.html', // 配置文件模板
