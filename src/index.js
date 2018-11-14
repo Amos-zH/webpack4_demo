@@ -1,9 +1,12 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Hello from './component.js';
-import './demo.less';
+import { BrowserRouter } from "react-router-dom";
+import Hello from './page';
+import './index.less';
 
 render(
-    <Hello />,
+    <BrowserRouter>
+        <Hello />
+    </BrowserRouter>,
     document.getElementById('app')
 );
