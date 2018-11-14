@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link } from "react-router-dom";
 import Yasha from './components/Yasha';
 import Public from './components/Public';
-import css from './index.less'
+import css from './page.less'
 
 class Hello extends Component {     //组件名首写字母必须大写
     render() {
