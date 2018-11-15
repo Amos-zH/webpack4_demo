@@ -21,6 +21,7 @@
     "development": {
       "presets": [["@babel/preset-react", { "development": true }]]
     }
-  }
+  },
 //  "plugins": ["transform-runtime"]
+  "plugins": ["react-hot-loader/babel"]
 }

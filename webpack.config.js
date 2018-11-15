@@ -3,17 +3,23 @@ const webpack = require('webpack');     //添加版权申明
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    devtool: 'eval-source-map',     //生成Source Maps（使调试更容易）;eval-source-map是一个很好的选项，只应该开发阶段使用它;cheap-module-eval-source-map方法构建速度更快，但是不利于调试，推荐在大型项目考虑时间成本时使用;
-    entry: __dirname + "/src/index.js",   //“__dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录。
+    devtool: "eval-source-map",     //生成Source Maps（使调试更容易）;eval-source-map是一个很好的选项，只应该开发阶段使用它;cheap-module-eval-source-map方法构建速度更快，但是不利于调试，推荐在大型项目考虑时间成本时使用;
+    entry: [
+        'react-hot-loader/patch',
+        __dirname + "/src/index.js",
+    ],   //“__dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录。
     output: {
         path: __dirname + "/dist",     //打包后的文件存放的地方
-        filename: "index_bundle.js"       //打包后输出文件的文件名
+        filename: "index_bundle.js",       //打包后输出文件的文件名
+        publicPath: "/dist"
     },
     //使用webpack构建本地服务器
     devServer: {
-        contentBase: "./dist",    //本地服务器所加载的页面所在的目录
+        publicPath: "/dist",
+        contentBase: path.resolve(__dirname, 'dist'),    //本地服务器所加载的页面所在的目录
         port: "5999",   //设置默认监听端口，如果省略，默认为”8080“
-        inline: true,  //实时刷新
+        inline: true,  //实时刷新，为入口页面添加热加载功能
+        hot: true,      //开启热替换功能，重新加载组件改变的部分（而不是重新加载整个页面），优先级比inline高
         historyApiFallback: true    //在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
     },
     module: {
@@ -62,6 +68,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html', // 配置输出文件名和路径
             template: __dirname + '/public/temp.html', // 配置文件模板
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin(),   //开启热模块加载
+        new webpack.NamedModulesPlugin()    //当开启 HMR 的时候使用该插件会显示模块的相对路径，建议用于开发环境
     ]
 };
